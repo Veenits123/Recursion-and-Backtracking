@@ -19,9 +19,6 @@ void print(){
 }
 
 void go(int row,int col){
-	// cout<<row<<" "<<col<<'\n';
-	// print();
-	// cout<<'\n';
 	if(row==n-1&&col==m-1){
 		print();
 		exit(0);
