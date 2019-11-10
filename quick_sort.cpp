@@ -8,20 +8,36 @@ using namespace std;
 #define P pair<int,int>
 #define pb push_back
 
-int binary_search(int a[],int st,int end,int key){
-	while(st<=end){
-		int mid=(st+end)/2;
-		if (a[mid]==key){
-			return mid;
-		}
-		if (a[mid]>key){
-			end=mid-1;
-		}
-		else{
-			st=mid+1;
+void print(int a[],int n);
+
+int partition(int a[],int st,int end){
+	int pivot=a[end];
+	int it=st-1;
+	for (int j=st;j<=end-1;j++){
+		if (a[j]<=pivot){
+			it++;
+			swap(a[j],a[it]);
 		}
 	}
-	return -1;
+	swap(a[it+1],a[end]);
+	return it;
+}
+
+void quick_sort(int a[],int n,int st,int end){
+	if (st>=end){
+		return ;
+	}
+	int it=partition(a,st,end);
+	print(a,n);
+	cout<<endl;
+	quick_sort(a,n,st,it);
+	quick_sort(a,n,it+1,end);
+}
+
+void print(int a[],int n){
+	for (int i=0;i<n;i++){
+		cout<<a[i]<<" ";
+	}
 }
 
 int32_t main(){
@@ -39,9 +55,8 @@ int32_t main(){
 	for (int i=0;i<n;i++){
 		cin>>a[i];
 	}
-	//quick_sort(a,n,0,n);
-	//print(a,n);
-	cout<<binary_search(a,0,n,9);
+	quick_sort(a,n,0,n);
+	print(a,n);
 	
 	return 0;
 }
