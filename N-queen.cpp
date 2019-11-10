@@ -70,4 +70,5 @@ int main(){
     cin>>n;
     clear_grid();
     nqueen(0);
+    //"#"
 }
